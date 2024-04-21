@@ -1,6 +1,9 @@
 const { Database } = require('../../database/data')
 const Ajv = require('ajv')
 const { TravelPlanDAO } = require('./travelPlan.model')
+const fs = require('fs')
+const path = require('path')
+const { v4: uuidv4 } = require('uuid')
 
 const ajv = new Ajv()
 
@@ -22,6 +25,12 @@ const schema = {
   additionalProperties: false,
 }
 
+// Function to save base64 data as a file
+function saveBase64AsFile(base64Data, filePath) {
+  const buffer = Buffer.from(base64Data, 'base64')
+  fs.writeFileSync(filePath, buffer)
+}
+
 const TravelPlanService = {
   getAll: (req, res) => {
     const travelPlanDao = new TravelPlanDAO(Database)
@@ -29,19 +38,21 @@ const TravelPlanService = {
   },
 
   createTravelPlan: (req, res) => {
-    const { name, from, until, image /**tady */ } = req.body
+    const { name, from, until, image } = req.body
 
     const valid = ajv.validate(schema, { name, from, until, image })
     if (!valid) {
       return res.status(400).send(ajv.errors)
     }
 
-    // img => base64 ( send this in body) (postman)
-    // save image to files /decomprimujes z base64 na soubor a ten ulozis assets/uuid.jpg
+    // Assuming you have the actual base64 image data in the request body
+    const base64Image = req.body.image
+    const imagePath = path.join(__dirname, '../../src/pic.jpg') // Path to your image file
+    saveBase64AsFile(base64Image, imagePath)
 
-    // generate url to saved image /assets/vygenerovanejnazev.jpg generateNewId()
-
-    const imageUrl = 'url to the file of image' /// tady uloz path assets/vygenerovanejnazev.jpg
+    // Generate a unique image URL using UUID
+    const uniqueId = uuidv4()
+    const imageUrl = `/assets/${uniqueId}.jpg`
 
     const travelPlanDao = new TravelPlanDAO(Database)
 
