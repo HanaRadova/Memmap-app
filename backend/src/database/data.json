@@ -1,0 +1,95 @@
+{
+  "travelPlans": [
+    {
+      "id": "7070bc7f-eb82-4360-8fcf-e0c5088677a6",
+      "name": "Summer Vacation in Greece",
+      "from": "2024-06-15",
+      "until": "2024-06-30",
+      "imageUrl": "url to the file of image"
+    },
+    {
+      "id": "28e8076f-3abb-4c22-abd3-f7869e4b0bc8",
+      "name": "Summer Vacation in Greece",
+      "from": "2024-06-15",
+      "until": "2024-06-30",
+      "imageUrl": "url to the file of image"
+    },
+    {
+      "id": "40b520bf-3452-4db8-9a38-6f7dbfc04453",
+      "name": "Ahoooj",
+      "from": "2024-06-15",
+      "until": "2024-06-30",
+      "imageUrl": "url to the file of image"
+    },
+    {
+      "id": "c2dcb58d-e405-4bfd-9359-63d38a36e286",
+      "name": "Ahoooj",
+      "from": "2024-06-15",
+      "until": "2024-06-30",
+      "imageUrl": "url to the file of image"
+    },
+    {
+      "id": "67091a5f-7f3c-48e6-a0f9-c94413da7ea1",
+      "name": "Ahoooj",
+      "from": "2024-06-15",
+      "until": "2024-06-30",
+      "imageUrl": "url to the file of image"
+    },
+    {
+      "id": "2b64907a-55b9-4e41-baaa-124b1754b32b",
+      "name": "Eiffel Tower",
+      "imageUrl": "url to the file of image"
+    },
+    {
+      "id": "5b721d04-b0d4-43ad-8126-ddeb72a77263",
+      "name": "Eiffel Tower",
+      "imageUrl": "url to the file of image"
+    },
+    {
+      "id": "bba457c8-16b3-4a89-890c-ad5566db2e39",
+      "name": "Eiffel Tower",
+      "imageUrl": "url to the file of image"
+    }
+  ],
+  "locations": [
+    {
+      "id": "54f7967c-dd69-4b74-9367-af3b249793b1",
+      "name": "Eiffel Tower22",
+      "coordinations": "48.8584; 2.2945",
+      "travelPlanId": "c2dcb58d-e405-4bfd-9359-63d38a36e286"
+    },
+    {
+      "id": "dbf22482-c286-4d68-ab16-62d35ed3dafe",
+      "name": "Eiffel Tower22",
+      "coordinations": "48.8584; 2.2945",
+      "travelPlanId": "c2dcb58d-e405-4bfd-9359-63d38a36e286"
+    },
+    {
+      "id": "98d9eabc-414c-484c-8bfa-e8a9c27d754f",
+      "name": "Eiffel Tower22",
+      "coordinations": "48.8584; 2.2945",
+      "travelPlanId": "c2dcb58d-e405-4bfd-9359-63d38a36e286"
+    },
+    {
+      "id": "59094c3c-36e3-4269-aeba-5f338d5c6418",
+      "name": "Eiffel Tower22",
+      "coordinations": "48.8584; 2.2945",
+      "travelPlanId": "c2dcb58d-e405-4bfd-9359-63d38a36e286"
+    }
+  ],
+  "photos": [
+    {
+      "id": "e3af97ca-a0fc-44a9-9b90-c82cf7b658c3",
+      "url": "url to the file of image",
+      "locationId": "59094c3c-36e3-4269-aeba-5f338d5c6418",
+      "dateTime": "2024-05-20"
+    },
+    {
+      "id": "689ed2e8-8cf6-48b0-911f-31883f55e337",
+      "url": "url to the file of image",
+      "locationId": "59094c3c-36e3-4269-aeba-5f338d5c6418",
+      "dateTime": "2024-05-20"
+    }
+  ],
+  "users": []
+}
