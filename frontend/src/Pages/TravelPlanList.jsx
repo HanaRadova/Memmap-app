@@ -5,19 +5,43 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useTravelApi } from '../hooks/useTravelApi.js'
 import { Box } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 export const TravelPlanList = ({ mode }) => {
   const { getAllTravelPlans } = useTravelApi()
-  const [travelPlans, setTravelPlans] = useState([])
+  const [travelPlansBeforeFilter, setTravelPlans] = useState([])
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     getAllTravelPlans().then((result) => {
       setTravelPlans(result)
     })
   }, [])
+
+  const travelPlans = useMemo(() => {
+    if (mode === 'future') {
+      return travelPlansBeforeFilter.filter((travelPlan) => {
+        return new Date(travelPlan.from) > new Date()
+      })
+    }
+    if (mode === 'past') {
+      return travelPlansBeforeFilter.filter((travelPlan) => {
+        return new Date(travelPlan.until) < new Date()
+      })
+    }
+    if (mode === 'current') {
+      return travelPlansBeforeFilter.filter((travelPlan) => {
+        return (
+          new Date(travelPlan.from) < new Date() &&
+          new Date(travelPlan.until) > new Date()
+        )
+      })
+    }
+  }, [travelPlansBeforeFilter, mode])
 
   return (
     <Box
@@ -41,12 +65,15 @@ export const TravelPlanList = ({ mode }) => {
       <Box
         sx={{
           display: 'flex',
+          flexWrap: 'wrap',
+          gap: 2,
+          justifyContent: 'center',
         }}
         p={3}
       >
         {travelPlans &&
           travelPlans.map((travelPlan) => (
-            <Card sx={{ maxWidth: 345 }}>
+            <Card key={travelPlan.id} sx={{ width: 345 }}>
               <CardMedia
                 component="img"
                 alt={travelPlan.name}
@@ -64,7 +91,12 @@ export const TravelPlanList = ({ mode }) => {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small">Otevřít</Button>
+                <Button
+                  size="small"
+                  onClick={() => navigate(`/travel-plan/${travelPlan.id}`)}
+                >
+                  Otevřít
+                </Button>
               </CardActions>
             </Card>
           ))}

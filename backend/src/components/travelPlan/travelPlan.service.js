@@ -4,6 +4,7 @@ const { TravelPlanDAO } = require('./travelPlan.model')
 const fs = require('fs')
 const path = require('path')
 const { v4: uuidv4 } = require('uuid')
+const saveBase64Image = require("../../utils/saveImage");
 
 const ajv = new Ajv()
 
@@ -45,14 +46,9 @@ const TravelPlanService = {
       return res.status(400).send(ajv.errors)
     }
 
-    // Assuming you have the actual base64 image data in the request body
-    const base64Image = req.body.image
-    const imagePath = path.join(__dirname, '../../src/pic.jpg') // Path to your image file
-    saveBase64AsFile(base64Image, imagePath)
+    const imageUrl = saveBase64Image(image)
 
-    // Generate a unique image URL using UUID
-    const uniqueId = uuidv4()
-    const imageUrl = `/assets/${uniqueId}.jpg`
+    console.log('imageUrl', imageUrl)
 
     const travelPlanDao = new TravelPlanDAO(Database)
 
@@ -60,6 +56,18 @@ const TravelPlanService = {
 
     return res.status(201).send(newTravelPlan)
   },
+
+  getById: (req, res) => {
+    const { id } = req.params
+    const travelPlanDao = new TravelPlanDAO(Database)
+    const travelPlan = travelPlanDao.getById(id)
+
+    if (travelPlan) {
+      return res.send(travelPlan)
+    }
+
+    return res.status(404).send({ message: 'Travel plan not found' })
+  }
 }
 
 module.exports = TravelPlanService

@@ -26,6 +26,7 @@ class TravelPlanDAO {
 
     this.db.travelPlans.push(newTravelPlan)
     saveDb()
+    return newTravelPlan
   }
 
   getAll() {

@@ -1,0 +1,31 @@
+:root {
+    --main-background: #C7FFC7;
+    --primary-color: #2FBD94FF;
+}
+
+#root {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: var(--main-background);
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #131313;
+}
+
+span.rdrStaticRangeLabel {
+    color: black;
+}
+
+.menu-button {
+    width:300px;
+}
+
+.rdrDefinedRangesWrapper {
+    display: none;
+}

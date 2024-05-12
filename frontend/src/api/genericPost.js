@@ -1,24 +1,12 @@
-export async function request(
-  path: string,
-  data?: any,
-  method: string = 'POST'
-): Promise<[Error | null, any | null]> {
+export async function request(path, data, method = 'POST') {
   const apiUrl = import.meta.env.VITE_API_URL
   const fullUrl = `${apiUrl}/${path}`
 
-  const headersValue = {
-    userKey: localStorage.getItem('userKey'),
-    isAdmin: localStorage.getItem('isAdmin'),
-    soloTest: localStorage.getItem('soloTest'),
-    duoTest: localStorage.getItem('duoTest'),
-  }
-
   try {
-    const fetchData: any = {
+    const fetchData = {
       method,
       headers: {
         'Content-Type': 'application/json',
-        'X-Custom-Header': JSON.stringify(headersValue),
       },
     }
 
@@ -41,6 +29,6 @@ export async function request(
     const result = await response.json()
     return [null, result]
   } catch (error) {
-    return [error as Error, null]
+    return [error, null]
   }
 }
